@@ -1,0 +1,38 @@
+<section style="margin-bottom:30px;">
+  <h1>住所 -> 緯度経度　変換</h1>
+  <%= form_tag({controller: "static_pages", action: "import", method: "post"}, {multipart: true}) do %>
+    <%= file_field_tag :file, accept: 'text/csv' %>
+    <%= submit_tag "オブジェクトを一括インポート" %>
+  <% end %>
+  <% flash.each do |key, value| %>
+    <%= content_tag(:div, value, class: "#{key}", style: "color:red;") %>
+  <% end %>
+</section>
+<section>
+  <h3>CSV形式について</h3>
+  <p>見出しなし住所のみでお願いします。<br>UTF-8形式にしてください。<br>100件までにしてください。お願いします。。。</p>
+  例
+  <table>
+    <tr><td>東京都港区台場１丁目６−１</td></tr>
+    <tr><td>東京都千代田区丸の内１丁目</td></tr>
+    <tr><td>東京都豊島区東池袋３丁目１番</td></tr>
+    <tr><td>東京都港区六本木６丁目１１−１</td></tr>
+    <tr><td>千葉県浦安市舞浜１−１</td></tr>
+    <tr><td>千葉県袖ケ浦市永吉４１９</td></tr>
+  </table>
+</section>
+<style>
+  table {border: solid 1px #000000; border-collapse: collapse;}
+  td {border: solid 1px #000000; border-collapse: collapse;}
+</style>
+<%#= link_to "csv出力",csv_output_static_pages_path(format: :csv) %>
+
+
+<script type="text/javascript">
+  $('#file').bind('change', function() {
+    var size_in_megabytes = this.files[0].size/1024/1024;
+    if (size_in_megabytes > 0.01) {
+      alert('Maximum file size is 100kb. Please choose a smaller file.');
+    }
+  });
+</script>
