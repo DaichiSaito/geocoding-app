@@ -32,7 +32,7 @@ class StaticPagesController < ApplicationController
           coords = Geocoder.coordinates(
             "#{row[0]}"
           )
-          sleep(0.25)  
+          # sleep(0.25)  
           if coords.nil?
             latitude = "変換失敗"
             longitude = "変換失敗"
