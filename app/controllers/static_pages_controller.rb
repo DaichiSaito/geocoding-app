@@ -21,7 +21,7 @@ class StaticPagesController < ApplicationController
         puts table.size
         
         
-        if table.size > 98
+        if table.size > 99
           flash[:danger] = "100行以内にしてください！！"
           raise something error  
         end
